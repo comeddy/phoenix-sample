@@ -53,7 +53,7 @@ public class App
             //DriverManager.getConnection("jdbc:phoenix:zk1,zk2,zk3:2181:/hbase-unsecure");
             //connection = DriverManager.getConnection(DB_URL);
             //connection = DriverManager.getConnection("jdbc:phoenix:40.78.62.72:2181/hbase");
-            connection = DriverManager.getConnection(properties.getProperty("phoenix.driver")); 
+            //connection = DriverManager.getConnection(properties.getProperty("phoenix.driver")); 
             connection = DriverManager.getConnection(properties.getProperty("phoenix.url"));
             LOG.debug("Creating statement...");
             
