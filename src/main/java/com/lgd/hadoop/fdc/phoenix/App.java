@@ -1,7 +1,7 @@
 package com.lgd.hadoop.fdc.phoenix;
 
 
-import java.io.IOException;
+//import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
