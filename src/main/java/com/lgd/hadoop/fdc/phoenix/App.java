@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.Properties;
 
+import org.apache.log4j.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,12 +20,6 @@ import org.slf4j.LoggerFactory;
  */
 public class App 
 {
-    /*
-    static final String JDBC_DRIVER = "org.apache.phoenix.jdbc.PhoenixDriver";
-    static final String IP = "40.78.62.72";
-    static final String PORT = "2181";   
-    static final String DB_URL = "jdbc:phoenix://" + IP + ":" + PORT + "/hbase-unsecure";
-    */
 
     private static final Logger LOG = LoggerFactory.getLogger(App.class);
     private static final Properties properties = System.getProperties();
@@ -43,8 +38,10 @@ public class App
 
         try {
             
+	    BasicConfigurator.configure();
             properties.load(classLoader.getResourceAsStream("db.properties"));
             Class.forName(properties.getProperty("phoenix.driver"));
+            //Class.forName("org.apache.phoenix.jdbc.PhoenixDriver");
 
             LOG.debug("connecting to database..");
             
@@ -52,9 +49,9 @@ public class App
             //connection = DriverManager.getConnection("jdbc:phoenix:localhost");
             //DriverManager.getConnection("jdbc:phoenix:zk1,zk2,zk3:2181:/hbase-unsecure");
             //connection = DriverManager.getConnection(DB_URL);
-            //connection = DriverManager.getConnection("jdbc:phoenix:40.78.62.72:2181/hbase");
+            connection = DriverManager.getConnection("jdbc:phoenix:40.78.62.72:2181:/hbase");
             //connection = DriverManager.getConnection(properties.getProperty("phoenix.driver")); 
-            connection = DriverManager.getConnection(properties.getProperty("phoenix.url"));
+            //connection = DriverManager.getConnection(properties.getProperty("phoenix.url"));
             LOG.debug("Creating statement...");
             
             // Create a JDBC statement
